@@ -5,7 +5,7 @@ description := "Discover and interface with sbt server using standard input and 
 libraryDependencies ++= Seq(
   "io.circe"           %% "circe-parser"                           % "0.9.0",
   "io.circe"           %% "circe-generic"                          % "0.9.0",
-  "com.lightbend.akka" %% "akka-stream-alpakka-unix-domain-socket" % "0.15+37-2f9eb295+20180104-1522",
+  "com.lightbend.akka" %% "akka-stream-alpakka-unix-domain-socket" % "0.17",
   "com.typesafe.akka"  %% "akka-slf4j"                             % "2.5.8",
   "ch.qos.logback"     % "logback-classic"                         % "1.2.3"
 )
