@@ -9,10 +9,11 @@ import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.alpakka.unixdomainsocket.scaladsl.UnixDomainSocket
 import akka.stream.scaladsl.{Flow, StreamConverters}
+import akka.util.ByteString
 import io.circe._
 import io.circe.parser._
 import io.circe.generic.auto._
-import jnr.unixsocket.{UnixSocketAddress}
+import jnr.unixsocket.UnixSocketAddress
 
 import scala.io.Source
 import scala.util.Try
@@ -43,11 +44,15 @@ object Sssio {
         implicit val sys = ActorSystem("sssio")
         implicit val mat = ActorMaterializer()
 
-        Flow
-          .fromSinkAndSource(
-            StreamConverters.fromOutputStream(() => System.out),
-            StreamConverters.fromInputStream(() => System.in)
+        Flow[ByteString]
+          .log("To stdout:", _.utf8String)
+          .via(
+            Flow.fromSinkAndSource(
+              StreamConverters.fromOutputStream(() => System.out),
+              StreamConverters.fromInputStream(() => System.in)
+            )
           )
+          .log("From stdin:", _.utf8String)
           .join(UnixDomainSocket().outgoingConnection(address))
           .run()
     }
