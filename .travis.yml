@@ -6,15 +6,19 @@ scala:
 jdk:
   - oraclejdk8
 
-script: sbt test
+jobs:
+  include:
+    - stage: test
+      script: sbt test
 
-deploy:
-  provider: script
-  script:
-    - sbt publish
-  on:
-    tags: true
-    repo: 2m/sssio
+    - stage: deploy
+      script: skip
+      deploy:
+        provider: script
+        script: sbt publish
+        on:
+          tags: true
+          repo: 2m/sssio
 
 before_cache:
   - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete
@@ -24,3 +28,10 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot
+
+env:
+  global:
+    # travis encrypt BINTRAY_USER=...
+    - secure: "Q7+nUF16iWVX35z8XDC5L4x+AtTJGIN98tJe+Ef1DqFWjKwmWOzFWrST2mxokmpDW75OnFNqLmAG40bPTY+2p/Q9SA6Qz395JXVum5Hl7uW/PvrXoBcvAS6kP4ayVBN7aLJLgjIZ92PBpV8KSJR0Bt7YzYCHAntt565/BRvL1ELy3NoJ56IkvZujJcHOUju4gHrADdFt7sNkGevl9ihCFSdXo83FPrRjRFMPZnFvyGTtaPeRkx4OHkgMvToiV+p3OC8/q9APnyLfQqwAplXmZV7EstnCH/AsazQGjFwYjccqdeUh8OIp0FFxyQ/3VBL7nvFrVAgkNzjJiaQvIDvkP1jXOncoTJJNmohcpO/CIqAlDWQf6tZ9SieGsguqpp4GOPRuVXnG+WlTMra98DJj2C/xv3jMNQFRFkPkJ48Slgr/yQHwn5q3iidbAJ7Kab2Nwhna5KVRjfe8lt73RkzLBzy5BSvsVweK+DoGYXOyIZC5Wh8rykLUaAR8GHaxqSZVwLh71BtLhFMJvKW2m41iRbeWkj1S2ZQ0pyfC11wL6HCe6dl81yaIcBwFrtTGdSh8eHusNE2TC/aL4MustDaF/SpxC7OCLXPE3haK5LNya1wHglDFNY/p12/l5FvOTjIen2DLAiGoc7kyZKbTAEhNLPjdgcN6ZGrQfW9/wv5dHAg="
+    # travis encrypt BINTRAY_PASS=...
+    - secure: "kC9jAuOW75xlC59Vbqjpoic6V6Qmi2noMW09lZexhjm6FTbSVzM8ikd1zaqnRXOFrCW4pwdgZFgypLzTII0Oj7tqb7WkkzZU35w3prCn/lvBWfZryOoIlfdO+txH2tHO8K4MlvjVL2cK2rEmX9jJzlUGvTBCLxZKLJRRVhRlow5CZ1ijoHnplS+1kROexO5oJgE3gXY3zbMZ3ijEeGnRimcuvzcMZlVOrKkmdOHAPy5/tV62Id03yd1WjoPAxynPCqx6+8ZOSF0U1b+1AFv7ncXIyDqdmTEDjpwiAvs0T8cAKQpPO3YIL+Bv3h+i26g+s1yzAyNNkhAKgYLnZNlBGnM60iv/ZC/XTRrfPHSo5utWalqh5rH4cae+dK7eGzU2tv8iHgORegZK2XCXFmbJv7XKCG1lMd4zSwJdYAxjOiMUWdHvryM+frS9Ydyzvzq4IdpYK22W4b1YsifgGyKnt+qkPui7tX4SeK1OG9WkKNJJCEgv3JtcVeEtHvhmqqmJD5R4JERdeZXnaSz1ZF89DDo1ndqNN9VUdeQKEGnkjRW21VTVThqGP2U8hwlO+elTNrPbkNeIG9qcY3nR5QXumSZLZmS7uRm6JBRzlAgXaVeRAm2rgjMTeKnOFTiIiKolR4HrdgipJbjcyC0srL3FU7FQJr4gn4kGBRZe1hE+ygw="
