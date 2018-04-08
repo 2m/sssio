@@ -7,7 +7,7 @@ libraryDependencies ++= Seq(
   "io.circe"           %% "circe-generic"                          % "0.9.3",
   "com.lightbend.akka" %% "akka-stream-alpakka-unix-domain-socket" % "0.18",
   "com.typesafe.akka"  %% "akka-slf4j"                             % "2.5.11",
-  "ch.qos.logback"     % "logback-classic"                         % "1.2.3"
+  "io.rbricks"         %% "scalog-backend"                         % "0.2.1",
 )
 
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
