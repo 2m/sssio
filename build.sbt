@@ -3,10 +3,10 @@ name := "sssio"
 description := "Discover and interface with sbt server using standard input and output"
 
 libraryDependencies ++= Seq(
-  "io.circe"           %% "circe-parser"                           % "0.9.0",
-  "io.circe"           %% "circe-generic"                          % "0.9.0",
-  "com.lightbend.akka" %% "akka-stream-alpakka-unix-domain-socket" % "0.17",
-  "com.typesafe.akka"  %% "akka-slf4j"                             % "2.5.8",
+  "io.circe"           %% "circe-parser"                           % "0.9.3",
+  "io.circe"           %% "circe-generic"                          % "0.9.3",
+  "com.lightbend.akka" %% "akka-stream-alpakka-unix-domain-socket" % "0.18",
+  "com.typesafe.akka"  %% "akka-slf4j"                             % "2.5.11",
   "ch.qos.logback"     % "logback-classic"                         % "1.2.3"
 )
 
