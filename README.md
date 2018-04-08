@@ -8,7 +8,7 @@
 [gitter]:             https://gitter.im/2m/sssio
 [gitter-badge]:       https://badges.gitter.im/2m/sssio.svg
 
-[sbt server](https://www.scala-sbt.org/1.x/docs/sbt-server.html) talks Language Server Protocol using Unix domain sockets. `sssio` (**s**bt **s**server **s**tandard **i**nput and **o**utput) automatically discovers sbt server's opened socket and converts it to standard input and output which most of the editors expect.
+[sbt server](https://www.scala-sbt.org/1.x/docs/sbt-server.html) talks Language Server Protocol using Unix domain sockets. `sssio` (**s**bt **s**erver **s**tandard **i**nput and **o**utput) automatically discovers sbt server's opened socket and converts it to standard input and output which most of the editors expect.
 
 ## Setup
 
