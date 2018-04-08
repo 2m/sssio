@@ -12,13 +12,8 @@ jobs:
       script: sbt test
 
     - stage: deploy
-      script: skip
-      deploy:
-        provider: script
-        script: sbt publish
-        on:
-          tags: true
-          repo: 2m/sssio
+      script: sbt publish
+      if: repo IS 2m/sssio
 
 before_cache:
   - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete

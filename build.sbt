@@ -18,6 +18,7 @@ developers += Developer("contributors",
                         "https://gitter.im/2m/sssio",
                         url("https://github.com/2m/sssio/graphs/contributors"))
 bintrayOrganization := Some("2m")
+bintrayRepository := (if (isSnapshot.value) "snapshots" else "maven")
 organizationName := "https://github.com/2m/sssio/graphs/contributors"
 startYear := Some(2018)
 
