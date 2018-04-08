@@ -32,7 +32,7 @@ To write all of the communication between sbt and LSP client to a file, add the 
 
 ## Licence
 
-Copyright 2018 Martynas Mickevičius
+Copyright 2018 https://github.com/2m/sssio/graphs/contributors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
