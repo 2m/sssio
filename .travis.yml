@@ -15,6 +15,10 @@ jobs:
       script: sbt publish
       if: repo IS 2m/sssio
 
+    - stage: sync maven central
+      script: sbt bintraySyncMavenCentral
+      if: (repo IS 2m/sssio) AND (tag =~ ^v)
+
 before_cache:
   - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete
   - find $HOME/.sbt  -name "*.lock"               -print -delete
@@ -30,3 +34,7 @@ env:
     - secure: "Q7+nUF16iWVX35z8XDC5L4x+AtTJGIN98tJe+Ef1DqFWjKwmWOzFWrST2mxokmpDW75OnFNqLmAG40bPTY+2p/Q9SA6Qz395JXVum5Hl7uW/PvrXoBcvAS6kP4ayVBN7aLJLgjIZ92PBpV8KSJR0Bt7YzYCHAntt565/BRvL1ELy3NoJ56IkvZujJcHOUju4gHrADdFt7sNkGevl9ihCFSdXo83FPrRjRFMPZnFvyGTtaPeRkx4OHkgMvToiV+p3OC8/q9APnyLfQqwAplXmZV7EstnCH/AsazQGjFwYjccqdeUh8OIp0FFxyQ/3VBL7nvFrVAgkNzjJiaQvIDvkP1jXOncoTJJNmohcpO/CIqAlDWQf6tZ9SieGsguqpp4GOPRuVXnG+WlTMra98DJj2C/xv3jMNQFRFkPkJ48Slgr/yQHwn5q3iidbAJ7Kab2Nwhna5KVRjfe8lt73RkzLBzy5BSvsVweK+DoGYXOyIZC5Wh8rykLUaAR8GHaxqSZVwLh71BtLhFMJvKW2m41iRbeWkj1S2ZQ0pyfC11wL6HCe6dl81yaIcBwFrtTGdSh8eHusNE2TC/aL4MustDaF/SpxC7OCLXPE3haK5LNya1wHglDFNY/p12/l5FvOTjIen2DLAiGoc7kyZKbTAEhNLPjdgcN6ZGrQfW9/wv5dHAg="
     # travis encrypt BINTRAY_PASS=...
     - secure: "kC9jAuOW75xlC59Vbqjpoic6V6Qmi2noMW09lZexhjm6FTbSVzM8ikd1zaqnRXOFrCW4pwdgZFgypLzTII0Oj7tqb7WkkzZU35w3prCn/lvBWfZryOoIlfdO+txH2tHO8K4MlvjVL2cK2rEmX9jJzlUGvTBCLxZKLJRRVhRlow5CZ1ijoHnplS+1kROexO5oJgE3gXY3zbMZ3ijEeGnRimcuvzcMZlVOrKkmdOHAPy5/tV62Id03yd1WjoPAxynPCqx6+8ZOSF0U1b+1AFv7ncXIyDqdmTEDjpwiAvs0T8cAKQpPO3YIL+Bv3h+i26g+s1yzAyNNkhAKgYLnZNlBGnM60iv/ZC/XTRrfPHSo5utWalqh5rH4cae+dK7eGzU2tv8iHgORegZK2XCXFmbJv7XKCG1lMd4zSwJdYAxjOiMUWdHvryM+frS9Ydyzvzq4IdpYK22W4b1YsifgGyKnt+qkPui7tX4SeK1OG9WkKNJJCEgv3JtcVeEtHvhmqqmJD5R4JERdeZXnaSz1ZF89DDo1ndqNN9VUdeQKEGnkjRW21VTVThqGP2U8hwlO+elTNrPbkNeIG9qcY3nR5QXumSZLZmS7uRm6JBRzlAgXaVeRAm2rgjMTeKnOFTiIiKolR4HrdgipJbjcyC0srL3FU7FQJr4gn4kGBRZe1hE+ygw="
+    # travis encrypt SONA_USER=...
+    - secure: "RxlAD/a0TeoUky68f1Hc4/OonG7lzsuCMcWmvzjYREta1DOZkI9R/8igJjdDMc8FoyvShEZOux1nG6DWWalgFz++6wdcPNr/uwMnbPsy73zrI11fxpk7bEaXJY+sbcWq955jOUwuPd4Ech2uGchMTNKNANrMl6iXi3OPWqrbB6yreuSTtZn08i14Q5yNJ+mx3qMIbn5M+Mg/7NQwbJ3Ku5z2xetfQymCAQNfgLeF00nztQxj4UDGPJPwWzPJBgwfSChp6NN8bWM9EARMsaMafD7bS1uOf8HQnKIm4yPn/qtYGP/IYmDLfmFSpGrncOcdmysshpH3Ab6y3ThVXol5SZ8qyzffQDajMX7MtFVDlOsqYn4dY7rnEAIBhI6ystOBZGSd4b/kLIl3KXNItYjPxOM0E2WxZiFpXXEWjvCV1fSWjcI64IMgxP3imFO5i/dmrN91GtRqhJTSeX1NHxAV2+zFmIMmessDp+ETuhwiLggq1h1VPoVmN0dyT5ND27XX6eLpDLkjU+SWSzzESpXJWae80f8y0pqCMM5sXp6hZxHAkvuyfrqbZNUckQifdZEWOcaQyFQUBTnSPVSnC9B6qtHI4u2pbiL8Vr/jqZbZDBpnXt98O0R8vdAmNwOX5pKd3ZqbqGiPj/1ZgEgAkBYQV1DzNWBBeJqaGUBOJRuglkk="
+    # travis encrypt SONA_PASS=...
+    - "HhqrmlkwUNgOWZRtB7hZOREdQt9wwP0D4+ZRHxkWAHAw3S49dro1ZDNeWrsWR7W63kiLDTkuYbY9Dep1m6EQS+aXGlV3cXKrlUh4UgdksqDniXYt88AHKski5XlIoWAirUxYyjSeGgNF87eqaaedm/hYZDHKeKXoHCMzcv4KOpRj+une1aMoVbV/XqyrV5gCTetTjWsikrtD3k3xOs28l0zsmksASNIL2+eiG1b4jJl7DMlceSQLfum4iMjqgA6kpxg70dR6lILcW+Qlp/P/a0meXlSimY8JLmTUf0op0FRXeBfjELNhQWuyM3WifFCfxEht2NXRRQlqyCPEVAUMu4gHylsGZY4G6y05GErreIhA6a3TQtnmbl8VESadmYXViiihSNd402Hax99fnKeIMamWgYvLErAniOSkPkFVM9roHEBA0fweOhAkwebfk19/o1MnoPEMkP17XC/U47i1Q4pqBzWDoNB7DxPNROKEaFfL7tZ3eQNdAQPzS8EoF0s+CmMEonalpd6y5irkudnNwsVHauD2KdPOQgyBayxEqTNad3Zo/68cRhGcbZzcGLOeXOYdD7UzLc+Q38kc6aqQ1dGJ1CasxNcnFl09JEgmg2Xig4LLBNRDF6UFAJZ0tH+KCYlkCY69EjYsIBhg7wtKg3+UyyoBfUkP5zmVwn/Futc="
