@@ -13,11 +13,11 @@ jobs:
 
     - stage: deploy
       script: sbt publish
-      if: repo IS 2m/sssio
+      if: repo = 2m/sssio
 
     - stage: sync maven central
       script: sbt bintraySyncMavenCentral
-      if: (repo IS 2m/sssio) AND (tag =~ ^v)
+      if: repo = 2m/sssio AND tag =~ ^v
 
 before_cache:
   - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete
